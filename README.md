@@ -9,3 +9,4 @@ Contains:
 - NTSC Test signal generator
 - FM Synth
 - Digital-to-Analog converters
+- Two layouts generated using [FeatherLane](https://codeberg.org/TholinVali/FeatherLane)
