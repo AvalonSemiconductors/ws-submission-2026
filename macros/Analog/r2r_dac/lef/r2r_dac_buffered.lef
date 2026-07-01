@@ -1,0 +1,166 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO r2r_dac_buffered
+  CLASS BLOCK ;
+  FOREIGN r2r_dac_buffered ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 91.155 BY 37.860 ;
+  PIN VDD
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER Metal4 ;
+        RECT 87.595 0.000 89.095 36.895 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 2.595 0.000 4.095 36.895 ;
+    END
+  END VDD
+  PIN VSS
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER Metal4 ;
+        RECT 89.595 0.000 91.095 36.895 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 0.095 0.000 1.595 36.895 ;
+    END
+  END VSS
+  PIN D0
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 79.775 36.505 80.755 37.860 ;
+    END
+  END D0
+  PIN D1
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 75.220 36.505 76.200 37.860 ;
+    END
+  END D1
+  PIN D2
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 70.360 36.505 71.340 37.860 ;
+    END
+  END D2
+  PIN D3
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 65.500 36.505 66.480 37.860 ;
+    END
+  END D3
+  PIN D4
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 60.640 36.505 61.620 37.860 ;
+    END
+  END D4
+  PIN D5
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 55.780 36.505 56.760 37.860 ;
+    END
+  END D5
+  PIN D6
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 50.920 36.505 51.900 37.860 ;
+    END
+  END D6
+  PIN D7
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 46.060 36.505 47.040 37.860 ;
+    END
+  END D7
+  PIN D8
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 41.200 36.505 42.180 37.860 ;
+    END
+  END D8
+  PIN D9
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 36.340 36.505 37.320 37.860 ;
+    END
+  END D9
+  PIN D10
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 31.480 36.505 32.460 37.860 ;
+    END
+  END D10
+  PIN D11
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal2 ;
+        RECT 26.620 36.505 27.600 37.860 ;
+    END
+  END D11
+  PIN OUT
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 171.479996 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 83.065 36.505 85.225 37.860 ;
+    END
+  END OUT
+  OBS
+      LAYER Nwell ;
+        RECT 4.455 0.035 81.945 35.735 ;
+      LAYER Metal1 ;
+        RECT 0.000 0.050 91.150 35.735 ;
+      LAYER Metal2 ;
+        RECT 0.095 36.205 26.320 36.895 ;
+        RECT 27.900 36.205 31.180 36.895 ;
+        RECT 32.760 36.205 36.040 36.895 ;
+        RECT 37.620 36.205 40.900 36.895 ;
+        RECT 42.480 36.205 45.760 36.895 ;
+        RECT 47.340 36.205 50.620 36.895 ;
+        RECT 52.200 36.205 55.480 36.895 ;
+        RECT 57.060 36.205 60.340 36.895 ;
+        RECT 61.920 36.205 65.200 36.895 ;
+        RECT 66.780 36.205 70.060 36.895 ;
+        RECT 71.640 36.205 74.920 36.895 ;
+        RECT 76.500 36.205 79.475 36.895 ;
+        RECT 81.055 36.205 91.095 36.895 ;
+        RECT 0.095 0.000 91.095 36.205 ;
+      LAYER Metal3 ;
+        RECT 0.095 36.205 82.765 36.895 ;
+        RECT 85.525 36.205 91.095 36.895 ;
+        RECT 0.095 0.000 91.095 36.205 ;
+  END
+END r2r_dac_buffered
+END LIBRARY
+

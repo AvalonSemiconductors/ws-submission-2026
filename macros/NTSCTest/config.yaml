@@ -1,0 +1,51 @@
+meta:
+  version: 3
+  flow: Classic
+  substituting_steps:
+    Verilator.Lint: null
+    +Magic.DRC: KLayout.Antenna
+    +Checker.MagicDRC: Checker.KLayoutAntenna
+
+
+DESIGN_NAME: ntsc
+VERILOG_FILES: ["dir::src/ntsc.v", "dir::src/test_pattern.v", "dir::src/expie_i.v"]
+CLOCK_PERIOD: 40
+DIE_AREA: [0, 0, 500, 500]
+RUN_MAGIC_DRC: true
+DIODE_ON_PORTS: both
+SYNTH_STRATEGY: AREA 0
+PL_RESIZER_SETUP_SLACK_MARGIN: 0.1
+GRT_RESIZER_SETUP_SLACK_MARGIN: 0.1
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.1
+PL_RESIZER_HOLD_SLACK_MARGIN: 0.1
+GRT_ANTENNA_MARGIN: 60
+DRT_ANTENNA_MARGIN: 60
+DRT_ANTENNA_REPAIR_ITERS: 10
+PNR_SDC_FILE: dir::../base.sdc
+SIGNOFF_SDC_FILE: dir::../base.sdc
+RUN_CTS: true
+CLOCK_PORT: clk_i
+CLOCK_NET: clk_i
+VDD_NETS: ["VDD"]
+GND_NETS: ["VSS"]
+VERILOG_POWER_DEFINE: "USE_POWER_PINS"
+FP_PIN_ORDER_CFG: dir::pin_order.cfg
+FP_PDN_MULTILAYER: false
+FP_SIZING: absolute
+FP_IO_HLAYER: Metal3
+FP_IO_VLAYER: Metal4
+
+KLAYOUT_DRC_THREADS: 1
+KLAYOUT_DRC_OPTIONS:
+  workers: max
+  decks: "all,-antenna,-density"
+
+KLAYOUT_ANTENNA_OPTIONS:
+  workers: max
+  decks: "antenna"
+
+STD_CELL_LIBRARY: "gf180mcu_as_sc_mcu7t3v3"
+
+KLAYOUT_RENDER_RESOLUTION: 8192
+KLAYOUT_RENDER_OVERSAMPLING: 3
+KLAYOUT_PROPERTIES: dir::../../librelane/gf180mcu_render.lyp

@@ -1,0 +1,252 @@
+library (fl_mcpu32) {
+  input_threshold_pct_fall: 50.0;
+  input_threshold_pct_rise: 50.0;
+  output_threshold_pct_fall: 50.0;
+  output_threshold_pct_rise: 50.0;
+  slew_lower_threshold_pct_fall: 20.0;
+  slew_lower_threshold_pct_rise: 20.0;
+  slew_upper_threshold_pct_fall: 80.0;
+  slew_upper_threshold_pct_rise: 80.0;
+  nom_process: 1.0;
+  nom_temperature: 25.0;
+  nom_voltage: 3.3;
+  
+  type("din") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 16;
+    bit_from : 15;
+    bit_to : 0;
+  }
+  type("dout") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 16;
+    bit_from : 15;
+    bit_to : 0;
+  }
+  type("address") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 16;
+    bit_from : 15;
+    bit_to : 0;
+  }
+  type("unused") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 7;
+    bit_from : 6;
+    bit_to : 0;
+  }
+  
+  cell (fl_mcpu32) {
+    pin("clk") {
+      direction : input;
+      clock : true;
+    }
+    pin("clk_n") {
+      direction : input;
+      clock : true;
+    }
+    pin("rst_n") {
+      direction : input;
+    }
+    pin("rst_override_n") {
+      direction : input;
+    }
+    bus("din") {
+      bus_type : din;
+      direction : input;
+      pin("din[0]") {
+        direction : input;
+      }
+      pin("din[1]") {
+        direction : input;
+      }
+      pin("din[2]") {
+        direction : input;
+      }
+      pin("din[3]") {
+        direction : input;
+      }
+      pin("din[4]") {
+        direction : input;
+      }
+      pin("din[5]") {
+        direction : input;
+      }
+      pin("din[6]") {
+        direction : input;
+      }
+      pin("din[7]") {
+        direction : input;
+      }
+      pin("din[8]") {
+        direction : input;
+      }
+      pin("din[9]") {
+        direction : input;
+      }
+      pin("din[10]") {
+        direction : input;
+      }
+      pin("din[11]") {
+        direction : input;
+      }
+      pin("din[12]") {
+        direction : input;
+      }
+      pin("din[13]") {
+        direction : input;
+      }
+      pin("din[14]") {
+        direction : input;
+      }
+      pin("din[15]") {
+        direction : input;
+      }
+    }
+    bus("unused") {
+      bus_type : unused;
+      direction : output;
+      pin("unused[0]") {
+        direction : output;
+      }
+      pin("unused[1]") {
+        direction : output;
+      }
+      pin("unused[2]") {
+        direction : output;
+      }
+      pin("unused[3]") {
+        direction : output;
+      }
+      pin("unused[4]") {
+        direction : output;
+      }
+      pin("unused[5]") {
+        direction : output;
+      }
+      pin("unused[6]") {
+        direction : output;
+      }
+    }
+    pin("le") {
+      direction : output;
+    }
+    bus("address") {
+      bus_type : address;
+      direction : output;
+      pin("address[0]") {
+        direction : output;
+      }
+      pin("address[1]") {
+        direction : output;
+      }
+      pin("address[2]") {
+        direction : output;
+      }
+      pin("address[3]") {
+        direction : output;
+      }
+      pin("address[4]") {
+        direction : output;
+      }
+      pin("address[5]") {
+        direction : output;
+      }
+      pin("address[6]") {
+        direction : output;
+      }
+      pin("address[7]") {
+        direction : output;
+      }
+      pin("address[8]") {
+        direction : output;
+      }
+      pin("address[9]") {
+        direction : output;
+      }
+      pin("address[10]") {
+        direction : output;
+      }
+      pin("address[11]") {
+        direction : output;
+      }
+      pin("address[12]") {
+        direction : output;
+      }
+      pin("address[13]") {
+        direction : output;
+      }
+      pin("address[14]") {
+        direction : output;
+      }
+      pin("address[15]") {
+        direction : output;
+      }
+    }
+    pin("oeb") {
+      direction : output;
+    }
+    pin("web") {
+      direction : output;
+    }
+    bus("dout") {
+      bus_type : dout;
+      direction : output;
+      pin("dout[0]") {
+        direction : output;
+      }
+      pin("dout[1]") {
+        direction : output;
+      }
+      pin("dout[2]") {
+        direction : output;
+      }
+      pin("dout[3]") {
+        direction : output;
+      }
+      pin("dout[4]") {
+        direction : output;
+      }
+      pin("dout[5]") {
+        direction : output;
+      }
+      pin("dout[6]") {
+        direction : output;
+      }
+      pin("dout[7]") {
+        direction : output;
+      }
+      pin("dout[8]") {
+        direction : output;
+      }
+      pin("dout[9]") {
+        direction : output;
+      }
+      pin("dout[10]") {
+        direction : output;
+      }
+      pin("dout[11]") {
+        direction : output;
+      }
+      pin("dout[12]") {
+        direction : output;
+      }
+      pin("dout[13]") {
+        direction : output;
+      }
+      pin("dout[14]") {
+        direction : output;
+      }
+      pin("dout[15]") {
+        direction : output;
+      }
+    }
+    pin("bus_enable") {
+      direction : output;
+    }
+  }
+}

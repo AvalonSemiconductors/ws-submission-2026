@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1782897460" />
+    <testcase name="test_dram_controller" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/DRAMController/test.py" lineno="6" time="4.539045095443726" sim_time_ns="113005.0" ratio_time="24896.205616779163" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,22 @@
+PDK?=gf180mcuD
+PDK_ROOT?=../../gf180mcu
+
+project:
+	java Convert.java test_pattern.png 12 9 9 > src/test_pattern.v
+	java Convert.java expie_i.png 12 9 9 > src/expie_i.v
+	librelane --pdk $(PDK) --pdk-root $(PDK_ROOT) --pad "gf180mcu_ocd_io" --manual-pdk --run-tag latest --overwrite config.yaml
+
+gui:
+	librelane --pdk $(PDK) --pdk-root $(PDK_ROOT) --pad "gf180mcu_ocd_io" --manual-pdk --last-run config.yaml --flow OpenInOpenROAD
+
+klayout:
+	echo "Choose 'yes' on the window that pops up and do File > Load Layer Properties and choose 'gf180mcu.lyp'"
+	# You may also have to restart klayout after first run for everything to load correctly
+	klayout runs/latest/final/gds/ntsc.gds
+magic:
+	cp magicrc_base ~/.magicrc
+	echo "Run 'select top cell; expand' in the console for a full view"
+	# Magic also lags until DRC is complete. Or you can click the "DRC" checkbox on the top bar to turn it off.
+	magic -d OGL runs/latest/final/mag/ntsc.mag
+
+.PHONY: project

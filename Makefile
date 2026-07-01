@@ -14,28 +14,19 @@ PDK_COMMIT ?= 140b0494c6665b10ce9353cb1c2ef5bcc18e7d66
 # gf180mcu_osu_sc_gp9t3v3 (broken)
 # gf180mcu_osu_sc_gp12t3v3 (broken)
 
-ifeq ($(SCL),default)
-    SCL = gf180mcu_fd_sc_mcu7t5v0
-endif
-SCL ?= gf180mcu_fd_sc_mcu7t5v0
+SCL = gf180mcu_as_sc_mcu7t3v3
 
 # Available PAD libraries:
 # gf180mcu_fd_io
 # gf180mcu_ocd_io
 
-ifeq ($(PAD),default)
-    PAD = gf180mcu_fd_io
-endif
-PAD ?= gf180mcu_fd_io
+PAD = gf180mcu_ocd_io
 
 # Available SRAM macros:
 # gf180mcu_fd_ip_sram
 # gf180mcu_ocd_ip_sram
 
-ifeq ($(SRAM),default)
-    SRAM = gf180mcu_fd_ip_sram
-endif
-SRAM ?= gf180mcu_fd_ip_sram
+SRAM = gf180mcu_ocd_ip_sram
 
 ifeq ($(SRAM),gf180mcu_fd_ip_sram)
     MACROS = 5v
@@ -47,11 +38,7 @@ AVAILABLE_SLOTS = 1x1 0p5x1 1x0p5 0p5x0p5
 DEFAULT_SLOT = 1x1
 
 # Slot can be any of AVAILABLE_SLOTS
-SLOT ?= $(DEFAULT_SLOT)
-
-ifeq ($(SLOT),default)
-    SLOT = $(DEFAULT_SLOT)
-endif
+SLOT = $(DEFAULT_SLOT)
 
 ifeq ($(filter $(SLOT),$(AVAILABLE_SLOTS)),)
     $(error $(SLOT) does not exist in AVAILABLE_SLOTS: $(AVAILABLE_SLOTS))
@@ -121,15 +108,3 @@ librelane-klayout: clone-pdk defines ## Open the last run in KLayout
 librelane-padring: clone-pdk defines ## Only create the padring
 	python3 scripts/padring.py ${LIBRELANE_CONFIGS} ${LIBRELANE_OPTS}
 .PHONY: librelane-padring
-
-sim: clone-pdk defines ## Run RTL simulation with cocotb
-	cd cocotb; PDK_ROOT=${PDK_ROOT} PDK=${PDK} SLOT=${SLOT} PAD=${PAD} SCL=${SCL} SRAM=${SRAM} python3 chip_top_tb.py
-.PHONY: sim
-
-sim-gl: clone-pdk defines ## Run gate-level simulation with cocotb (after copy-final)
-	cd cocotb; GL=1 PDK_ROOT=${PDK_ROOT} PDK=${PDK} SLOT=${SLOT} PAD=${PAD} SCL=${SCL} SRAM=${SRAM} python3 chip_top_tb.py
-.PHONY: sim-gl
-
-sim-view: ## View simulation waveforms in GTKWave
-	gtkwave cocotb/sim_build/chip_top.fst
-.PHONY: sim-view

@@ -52,7 +52,6 @@ set_output_delay $output_delay_value -clock $clocks $clk_core_inout_ports
 
 # Input-only pads
 set clk_core_input_ports [get_ports { 
-    rst_n_PAD
     input_PAD[*]
 }] 
 

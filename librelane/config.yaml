@@ -2,36 +2,42 @@ meta:
   version: 3
   flow: Chip
   substituting_steps:
-
+    OpenROAD.RepairDesignPostGpl: null
+    OpenROAD.ResizerTimingPostCTS: null
+    +OpenROAD.RepairAntennas: Odb.InsertECODiodes
+    #KLayout.DRC: null
+    #Checker.KLayoutDRC: null
+    Magic.DRC: null
+    Checker.MagicDRC: null
+    
     # Render the layout after sealring insertion
     KLayout.Render: null
     +KLayout.SealRing: KLayout.Render
 
-    # Disable KLayout DRC
-    #KLayout.DRC: null
-    #Checker.KLayoutDRC: null
-
-    # Disable KLayout antenna check
-    #KLayout.Antenna: null
-    #Checker.KLayoutAntenna: null
-
-    # Disable KLayout density check
-    #KLayout.Density: null
-    #Checker.KLayoutDensity: null
-
-    # Save time during development
-    # Enable for sign-off
-    #OpenROAD.IRDropReport: null
-    #Magic.DRC: null
-    #Checker.MagicDRC: null
-    #KLayout.XOR: null
-    #Netgen.LVS: null
-    #Checker.LVS: null
+ROUTING_OBSTRUCTIONS: [
+#palette_1
+["Metal5", 2385, 3935, 3340, 4555],
+["Metal4", 2385, 3935, 3340, 4555],
+["Metal3", 2385, 3935, 3340, 4555],
+["Metal2", 2385, 3935, 3340, 4555],
+["Metal1", 2385, 3935, 3340, 4555],
+#avali
+["Metal5", 600, 4200, 900, 4553],
+["Metal4", 600, 4200, 900, 4553],
+#td_1
+["Metal5", 600, 3200, 677, 3277],
+["Metal4", 600, 3200, 677, 3277],
+#td_2
+["Metal5", 3250, 2100, 3327, 2177],
+["Metal4", 3250, 2100, 3327, 2177],
+#expie
+["Metal5", 900, 4200, 984, 4273],
+["Metal4", 900, 4200, 984, 4273]
+]
 
 DESIGN_NAME: chip_top
 VERILOG_FILES:
 - dir::../src/chip_top.sv
-- dir::../src/chip_core.sv
 
 # Enable plugin for better SystemVerilog support
 # USE_SLANG: True
@@ -60,27 +66,23 @@ IGNORE_DISCONNECTED_MODULES:
 - gf180mcu_ws_ip__project_id
 - gf180mcu_ws_ip__logo
 - gf180mcu_ws_ip__marker
+- avali
+- td
+- expie
 
 # Clock
 CLOCK_PORT: clk_PAD
 CLOCK_NET: clk_pad/Y
-CLOCK_PERIOD: 40 # 25 MHz
-
-# Overfix hold violations
-PL_RESIZER_HOLD_SLACK_MARGIN: 0.35
-GRT_RESIZER_HOLD_SLACK_MARGIN: 0.3
-
-# Increase density for more 
-# logic on your die
-PL_TARGET_DENSITY_PCT: 35
-GRT_ALLOW_CONGESTION: true
+CLOCK_PERIOD: 200
 
 # Allow a larger Y displacement
 PL_MAX_DISPLACEMENT_Y: 200
 
 # Fix antenna violations after DRT
-DRT_ANTENNA_REPAIR_ITERS: 10
-DRT_ANTENNA_REPAIR_MARGIN: 10 # %
+DRT_ANTENNA_REPAIR_ITERS: 25
+GRT_ANTENNA_REPAIR_ITERS: 50
+GRT_ANTENNA_REPAIR_MARGIN: 60
+DRT_ANTENNA_REPAIR_MARGIN: 30 # %
 
 # PDN
 PDN_CFG: dir::pdn/pdn_cfg.tcl
@@ -153,7 +155,7 @@ KLAYOUT_FILLER_OPTIONS:
 MAGIC_EXT_UNIQUE: notopports
 
 # Image render settings
-KLAYOUT_RENDER_RESOLUTION: 2048
+KLAYOUT_RENDER_RESOLUTION: 8192
 KLAYOUT_RENDER_OVERSAMPLING: 3
 KLAYOUT_PROPERTIES: dir::gf180mcu_render.lyp
 
@@ -180,3 +182,11 @@ KLAYOUT_ANTENNA_OPTIONS:
   decks: "antenna"
   variant: ref::$PDK
   workers: max
+
+INSERT_ECO_DIODES:
+  - target: bidir[4].pad/A
+  - target: bidir[12].pad/PU
+  - target: bidir[4].pad/CS
+  - target: bidir[7].pad/PU
+  - target: bidir[8].pad/PU
+  - target: bidir[9].pad/CS

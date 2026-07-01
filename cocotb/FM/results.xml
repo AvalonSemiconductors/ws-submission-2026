@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1782907091" />
+    <testcase name="test_fm" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/FM/test.py" lineno="18" time="836.7474353313446" sim_time_ns="22283000.0" ratio_time="26630.49692070598" />
+  </testsuite>
+</testsuites>
