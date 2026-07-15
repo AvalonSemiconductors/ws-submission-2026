@@ -93,15 +93,59 @@ test_pattern test_pattern(
 	.Q(test_pattern_q)
 );
 
-wire [11:0] expie_y;
-wire [8:0] expie_i;
-wire [8:0] expie_q;
+wire [7:0] expie_y;
+wire [7:0] expie_i;
+wire [7:0] expie_q;
 expie_i expie(
 	.column(active_pixel[9:2]),
 	.row(active_line[7:1]),
 	.Y(expie_y),
 	.I(expie_i),
 	.Q(expie_q)
+);
+
+wire [11:0] trans_y;
+wire [8:0] trans_i;
+wire [8:0] trans_q;
+trans trans(
+	.column(active_pixel[1:0]),
+	.row(active_line),
+	.Y(trans_y),
+	.I(trans_i),
+	.Q(trans_q)
+);
+
+wire [11:0] pan_y;
+wire [8:0] pan_i;
+wire [8:0] pan_q;
+pan pan(
+	.column(active_pixel[1:0]),
+	.row(active_line),
+	.Y(pan_y),
+	.I(pan_i),
+	.Q(pan_q)
+);
+
+wire [7:0] plural_y;
+wire [7:0] plural_i;
+wire [7:0] plural_q;
+plural plural(
+	.column(active_pixel[9:3]),
+	.row(active_line[7:2]),
+	.Y(plural_y),
+	.I(plural_i),
+	.Q(plural_q)
+);
+
+wire [7:0] birds_y;
+wire [4:0] birds_i;
+wire [4:0] birds_q;
+birds birds(
+	.column(active_pixel[9:3]),
+	.row(active_line[7:2]),
+	.Y(birds_y),
+	.I(birds_i),
+	.Q(birds_q)
 );
 
 `ifdef SIM
@@ -283,9 +327,30 @@ always @(posedge clk_i) begin
 				ntsc_luma <= test_pattern_y + `BLACK_LEVEL;
 			end
 			if(program_select == 7) begin
-				ntsc_i <= expie_i;
-				ntsc_q <= expie_q;
-				ntsc_luma <= expie_y + `BLACK_LEVEL;
+				ntsc_i <= {expie_i, 1'b0};
+				ntsc_q <= {expie_q, 1'b0};
+				ntsc_luma <= {expie_y, 4'h0} + `BLACK_LEVEL;
+			end
+			if(program_select == 8 || program_select == 9 || program_select == 10) begin
+				if((frame_counter[7] || program_select == 9) && program_select != 10) begin
+					ntsc_i <= trans_i;
+					ntsc_q <= trans_q;
+					ntsc_luma <= trans_y + `BLACK_LEVEL;
+				end else begin
+					ntsc_i <= pan_i;
+					ntsc_q <= pan_q;
+					ntsc_luma <= pan_y + `BLACK_LEVEL;
+				end
+			end
+			if(program_select == 11) begin
+				ntsc_i <= {plural_i, 1'b0};
+				ntsc_q <= {plural_q, 1'b0};
+				ntsc_luma <= {plural_y, 4'h0} + `BLACK_LEVEL;
+			end
+			if(program_select == 12) begin
+				ntsc_i <= {birds_i, 4'h0};
+				ntsc_q <= {birds_q, 4'h0};
+				ntsc_luma <= {birds_y, 4'h0} + `BLACK_LEVEL;
 			end
 		end
 	end

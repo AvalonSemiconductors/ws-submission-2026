@@ -402,23 +402,22 @@ always @(*) begin
 		2: message_char = 8'h6F;
 		3: message_char = 8'h72;
 		4: message_char = 8'h20;
-		5: message_char = 8'h4C;
-		6: message_char = 8'h69;
-		7: message_char = 8'h6C;
-		8: message_char = 8'h69;
-		9: message_char = 8'h74;
-		10: message_char = 8'h68;
-		11: message_char = 8'h2F;
-		12: message_char = 8'h4C;
-		13: message_char = 8'h69;
-		14: message_char = 8'h6C;
-		15: message_char = 8'h6C;
-		16: message_char = 8'h79;
-		17: message_char = 8'h21;
-		18: message_char = 8'h20;
-		19: message_char = 8'h3C;
-		20: message_char = 8'h33;
-		21: message_char = 8'h00;
+		5: message_char = 8'h57;
+		6: message_char = 8'h68;
+		7: message_char = 8'h69;
+		8: message_char = 8'h73;
+		9: message_char = 8'h70;
+		10: message_char = 8'h65;
+		11: message_char = 8'h72;
+		12: message_char = 8'h20;
+		13: message_char = 8'hE2;
+		14: message_char = 8'h99;
+		15: message_char = 8'hA6;
+		16: message_char = 8'h21;
+		17: message_char = 8'h20;
+		18: message_char = 8'h3C;
+		19: message_char = 8'h33;
+		20: message_char = 8'h00;
 	endcase
 end
 

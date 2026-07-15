@@ -3,7 +3,11 @@ PDK_ROOT?=../../gf180mcu
 
 project:
 	java Convert.java test_pattern.png 12 9 9 > src/test_pattern.v
-	java Convert.java expie_i.png 12 9 9 > src/expie_i.v
+	java Convert.java expie_i.png 8 8 8 > src/expie_i.v
+	java Convert.java trans.png 12 9 9 > src/trans.v
+	java Convert.java pan.png 12 9 9 > src/pan.v
+	java Convert.java plural.png 8 8 8 > src/plural.v
+	java Convert.java birds.png 8 5 5 > src/birds.v
 	librelane --pdk $(PDK) --pdk-root $(PDK_ROOT) --pad "gf180mcu_ocd_io" --manual-pdk --run-tag latest --overwrite config.yaml
 
 gui:

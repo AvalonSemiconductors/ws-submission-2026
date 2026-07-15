@@ -106,7 +106,7 @@ MACROS:
         location: [600, 3180]
         orientation: N
       td_2:
-        location: [3250, 2100]
+        location: [3250, 3700]
         orientation: N
   avali:
     gds:
@@ -135,6 +135,34 @@ MACROS:
     instances:
       expie:
         location: [900, 4200]
+        orientation: N
+  whisper:
+    gds:
+      - dir::../art/whisper.gds
+    lef:
+      - dir::../art/whisper.lef
+    vh:
+      - dir::../art/whisper.v
+    lib:
+      "*":
+        - dir::../art/whisper.lib
+    instances:
+      whisper:
+        location: [1750, 1400]
+        orientation: N
+  tholin:
+    gds:
+      - dir::../art/tholin.gds
+    lef:
+      - dir::../art/tholin.lef
+    vh:
+      - dir::../art/tholin.v
+    lib:
+      "*":
+        - dir::../art/tholin.lib
+    instances:
+      tholin:
+        location: [1750, 720]
         orientation: N
   apad:
     gds:
@@ -224,7 +252,34 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/NTSCTest/runs/latest/final/lib/nom_tt_025C_3v30/ntsc__nom_tt_025C_3v30.lib
     instances:
       ntsc:
-        location: [1000, 1650]
+        location: [575, 1550]
+        orientation: N
+  combined:
+    gds:
+      - dir::../macros/Combined/runs/latest/final/gds/combined.gds
+    lef:
+      - dir::../macros/Combined/runs/latest/final/lef/combined.lef
+    pnl:
+      - dir::../macros/Combined/runs/latest/final/pnl/combined.pnl.v
+    nl:
+      - dir::../macros/Combined/runs/latest/final/nl/combined.nl.v
+    spef:
+      min_*: dir::../macros/Combined/runs/latest/final/spef/min/combined.min.spef
+      nom_*: dir::../macros/Combined/runs/latest/final/spef/nom/combined.nom.spef
+      max_*: dir::../macros/Combined/runs/latest/final/spef/max/combined.max.spef
+    lib:
+      max_ff_n40C_3v60: dir::../macros/Combined/runs/latest/final/lib/max_ff_n40C_3v60/combined__max_ff_n40C_3v60.lib
+      max_ss_125C_3v00: dir::../macros/Combined/runs/latest/final/lib/max_ss_125C_3v00/combined__max_ss_125C_3v00.lib
+      max_tt_025C_3v30: dir::../macros/Combined/runs/latest/final/lib/max_tt_025C_3v30/combined__max_tt_025C_3v30.lib
+      min_ff_n40C_3v60: dir::../macros/Combined/runs/latest/final/lib/min_ff_n40C_3v60/combined__min_ff_n40C_3v60.lib
+      min_ss_125C_3v00: dir::../macros/Combined/runs/latest/final/lib/min_ss_125C_3v00/combined__min_ss_125C_3v00.lib
+      min_tt_025C_3v30: dir::../macros/Combined/runs/latest/final/lib/min_tt_025C_3v30/combined__min_tt_025C_3v30.lib
+      nom_ff_n40C_3v60: dir::../macros/Combined/runs/latest/final/lib/nom_ff_n40C_3v60/combined__nom_ff_n40C_3v60.lib
+      nom_ss_125C_3v00: dir::../macros/Combined/runs/latest/final/lib/nom_ss_125C_3v00/combined__nom_ss_125C_3v00.lib
+      nom_tt_025C_3v30: dir::../macros/Combined/runs/latest/final/lib/nom_tt_025C_3v30/combined__nom_tt_025C_3v30.lib
+    instances:
+      combined:
+        location: [2625, 600]
         orientation: N
   wrapped_mcpu:
     gds:
@@ -251,7 +306,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/MCPU32/runs/latest/final/lib/nom_tt_025C_3v30/wrapped_mcpu__nom_tt_025C_3v30.lib
     instances:
       wrapped_mcpu:
-        location: [550, 1800]
+        location: [1300, 3900]
         orientation: N
   as65x:
     gds:
@@ -278,7 +333,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/AS65x/runs/latest/final/lib/nom_tt_025C_3v30/as65x__nom_tt_025C_3v30.lib
     instances:
       as65x:
-        location: [550, 2300]
+        location: [550, 2450]
         orientation: N
   c64pla:
     gds:
@@ -305,7 +360,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/C64PLA/runs/latest/final/lib/nom_tt_025C_3v30/c64pla__nom_tt_025C_3v30.lib
     instances:
       c64pla:
-        location: [1525, 4125]
+        location: [1525, 4350]
         orientation: N
   sid:
     gds:
@@ -332,7 +387,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/SID/runs/latest/final/lib/nom_tt_025C_3v30/sid__nom_tt_025C_3v30.lib
     instances:
       sid:
-        location: [1000, 2300]
+        location: [1050, 2400]
         orientation: N
   gpiochip:
     gds:
@@ -386,7 +441,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/DRAMController/runs/latest/final/lib/nom_tt_025C_3v30/dram_controller__nom_tt_025C_3v30.lib
     instances:
       dram_controller:
-        location: [1000, 4350]
+        location: [1100, 4350]
         orientation: N
   as65rv32:
     gds:
@@ -413,7 +468,7 @@ MACROS:
       nom_tt_025C_3v30: dir::../macros/65RV32/runs/latest/final/lib/nom_tt_025C_3v30/as65rv32__nom_tt_025C_3v30.lib
     instances:
       as65rv32:
-        location: [600, 600]
+        location: [575, 550]
         orientation: N
   fm:
     gds:

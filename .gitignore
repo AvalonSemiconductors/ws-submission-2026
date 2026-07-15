@@ -1,3 +1,4 @@
+macros/SecretMessage/msg.txt
 Avalonia-ExtraBold.otf
 runs/
 __pycache__/
@@ -21,6 +22,7 @@ macros/SID/Verilator/obj_dir/
 *.bin
 cocotb/65RV32/C/*.txt
 silicon_art/
-macros/SecretMessage/src/message.v
 docs/venv/
 docs/build/
+art/whisper.png
+art/tholin.png

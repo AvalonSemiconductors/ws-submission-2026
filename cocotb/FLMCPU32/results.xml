@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1784065723" />
+    <testcase name="test_mcpu32" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/FLMCPU32/test.py" lineno="6" time="5.3471972942352295" sim_time_ns="6976.0" ratio_time="1304.6086793021027" />
+  </testsuite>
+</testsuites>

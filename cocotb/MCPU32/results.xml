@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1782912060" />
-    <testcase name="test_mcpu32" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/MCPU32/test.py" lineno="6" time="4.161095857620239" sim_time_ns="6976.0" ratio_time="1676.4814459212253" />
+    <property name="random_seed" value="1784065636" />
+    <testcase name="test_mcpu32" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/MCPU32/test.py" lineno="6" time="5.311245441436768" sim_time_ns="6976.0" ratio_time="1313.439583412077" />
   </testsuite>
 </testsuites>

@@ -381,6 +381,8 @@ always @(negedge PH0IN) begin
 		port_dir <= 8'h0;
 		uart_divisor <= 88;
 		uart_reloc <= 0;
+		uart_paren <= 0;
+		uart_partype <= 0;
 		O <= 0;
 		nmi_pending <= 0;
 		mem_byte <= 0;
@@ -401,6 +403,18 @@ always @(negedge PH0IN) begin
 		reset_ALE <= 0;
 		just_reset <= 1'b1;
 		addr_hi_latch <= 0;
+		PC <= 0;
+		prev_PC <= 0;
+		port_val <= 0;
+		mem_buffer <= 0;
+		reservation_slot <= 0;
+		mul_shifter <= 0;
+		div_shifter <= 0;
+		div_res <= 0;
+		div_counter <= 0;
+		mnscratch <= 0;
+		mnepc <= 0;
+		mepc <= 0;
 	end else if(rdy_actual) begin
 		writeback_loc <= 0;
 		if(ALE_pre) addr_hi_latch <= addr_buffer[31:16];

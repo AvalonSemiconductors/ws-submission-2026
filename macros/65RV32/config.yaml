@@ -4,7 +4,6 @@ meta:
   substituting_steps:
     +Magic.DRC: KLayout.Antenna
     +Checker.MagicDRC: Checker.KLayoutAntenna
-    +Checker.MaxCapViolations: KLayout.Render
 
 DESIGN_NAME: as65rv32
 VERILOG_FILES: ["dir::src/cpu.v", "dir::src/wrapped_cpu.v", "dir::src/uart.v"]
@@ -35,8 +34,10 @@ RT_MAX_LAYER: Metal4
 FP_PIN_ORDER_CFG: dir::pin_order.cfg
 FP_PDN_MULTILAYER: false
 FP_SIZING: absolute
-FP_IO_HLAYER: Metal3
-FP_IO_VLAYER: Metal4
+IO_PIN_H_LAYER: Metal3
+IO_PIN_V_LAYER: Metal4
+GRT_OVERFLOW_ITERS: 10
+OUTPUT_CAP_LOAD: 180
 
 KLAYOUT_DRC_THREADS: 1
 KLAYOUT_DRC_OPTIONS:

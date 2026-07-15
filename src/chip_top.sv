@@ -286,7 +286,7 @@ module chip_top #(
     wire [45:0] io_out_mcpu;
     wire [9:0] io_oe_mcpu;
     
-    assign bidir_CORE2PAD_SL = design_sel == 5'hA ? {44'h0, io_oe_mcpu[1:0]} : 0;
+    assign bidir_CORE2PAD_SL = design_sel == 5'hC ? {45'h1FFFFFFFFFFF, 1'b0} : (design_sel == 5'hA ? {44'h0, io_oe_mcpu[1:0]} : 0);
     assign bidir_CORE2PAD_IE = ~bidir_CORE2PAD_OE;
     assign select_6502 = design_sel[0];
     wire is_6502 = design_sel[4:1] == 0;
@@ -295,6 +295,12 @@ module chip_top #(
     wire rst_override_n_ntsc;
     wire [11:0] io_out_ntsc;
     wire [11:0] sample_ntsc;
+    
+    wire rst_override_n_combined;
+    wire [41:0] io_out_combined;
+    wire [41:0] io_oe_combined;
+    wire [41:0] io_pu_combined;
+    wire [41:0] io_pd_combined;
     
     //For all FeatherLane generated layouts
     wire sel_fl_mcpu32 = design_sel == 5'h1D;
@@ -339,6 +345,12 @@ module chip_top #(
             io_cs_sel = {43'h0, 1'b1, 2'b0};
             io_pd_sel = {44'h0, 2'b11};
             io_pu_sel = {43'h0, 1'b1, 2'b0};
+        end else if(design_sel[4:2] == 3'b011) begin
+            io_oe_sel = {4'hF, io_oe_combined};
+            io_out_sel = {4'hF, io_out_combined};
+            io_cs_sel = 1;
+            io_pd_sel = {4'h0, io_pd_combined};
+            io_pu_sel = {4'h0, io_pu_combined};
         end else begin
             case(design_sel)
                 default: begin
@@ -417,6 +429,7 @@ module chip_top #(
     assign rst_override_n_hcf             = design_sel == 5'h9;
     assign rst_override_n_mcpu            = design_sel == 5'hA;
     assign rst_override_n_ntsc            = design_sel == 5'hB;
+    assign rst_override_n_combined        = design_sel[4:2] == 3'b011;
     
     (* keep *)
     gf180mcu_as_sc_mcu7t3v3__hcf_7 hcf_lol_lmao_even(
@@ -524,6 +537,58 @@ module chip_top #(
         .OUT(analog_PAD[3])
     );
     
+    wire clk_buffered;
+    (* keep *)
+    gf180mcu_as_sc_mcu7t3v3__buff_16 clk_rebuff(
+    `ifdef USE_POWER_PINS
+        .VNW    (VDD),
+        .VPW    (VSS),
+        .VDD    (VDD),
+        .VSS    (VSS),
+    `endif
+        .A(clk_PAD2CORE),
+        .Y(clk_buffered)
+    );
+    
+    wire [1:0] design_sel_buffered;
+    (* keep *)
+    gf180mcu_as_sc_mcu7t3v3__buff_16 design_sel_rebuff0(
+    `ifdef USE_POWER_PINS
+        .VNW    (VDD),
+        .VPW    (VSS),
+        .VDD    (VDD),
+        .VSS    (VSS),
+    `endif
+        .A(design_sel[0]),
+        .Y(design_sel_buffered[0])
+    );
+    (* keep *)
+    gf180mcu_as_sc_mcu7t3v3__buff_16 design_sel_rebuff1(
+    `ifdef USE_POWER_PINS
+        .VNW    (VDD),
+        .VPW    (VSS),
+        .VDD    (VDD),
+        .VSS    (VSS),
+    `endif
+        .A(design_sel[1]),
+        .Y(design_sel_buffered[1])
+    );
+    
+    combined combined(
+    `ifdef USE_POWER_PINS
+        .VSS(VSS),
+        .VDD(VDD),
+    `endif
+        .clk_i(clk_buffered),
+        .rst_override_n(rst_override_n_combined),
+        .io_in_buffered(io_in_buffered[41:0]),
+        .io_out(io_out_combined),
+        .io_oe(io_oe_combined),
+        .io_pd(io_pd_combined),
+        .io_pu(io_pu_combined),
+        .design_sel_buffered(design_sel_buffered)
+    );
+    
     wrapped_mcpu wrapped_mcpu(
     `ifdef USE_POWER_PINS
         .VSS(VSS),
@@ -591,19 +656,6 @@ module chip_top #(
         .adc_out_3(gpiochip_sample_3)
     );
     
-    /*repeater repeater(
-    `ifdef USE_POWER_PINS
-        .VSS(VSS),
-        .VDD(VDD),
-    `endif
-        .clk_i(clk_PAD2CORE),
-        .clk_o(clk_buffered),
-        .io_in(bidir_PAD2CORE),
-        .design_sel(design_sel),
-        .io_in_buffered(io_in_buffered),
-        .design_sel_buffered(design_sel_buffered)
-    );*/
-    
     generate
     for(genvar i = 0; i < NUM_BIDIR_PADS; i++) begin : input_repeaters
         (* keep *)
@@ -638,8 +690,6 @@ module chip_top #(
         .VSS(VSS),
         .VDD(VDD),
     `endif
-        .clk_i(clk_PAD2CORE),
-        .rst_override_n(rst_override_n_c64pla),
         .io_in_buffered({io_in_buffered[41:40], io_in_buffered[39:37], io_in_buffered[35], io_in_buffered[33:32], io_in_buffered[20:19], io_in_buffered[14:12], io_in_buffered[10:7], io_in_buffered[3:0]}),
         .io_out(io_out_c64pla),
         .io_oe(io_oe_c64pla)
@@ -723,6 +773,8 @@ module chip_top #(
     (* keep *) td td_2 ();
     (* keep *) avali avali ();
     (* keep *) expie expie ();
+    (* keep *) whisper whisper ();
+    (* keep *) tholin tholin ();
     
     // Do not remove, necessary for tapeout
     (* keep *) gf180mcu_ws_ip__qrcode_id qrcode_id ();

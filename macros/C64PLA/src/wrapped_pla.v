@@ -4,10 +4,7 @@ module c64pla(
 `ifdef USE_POWER_PINS
 	inout wire VSS,
 	inout wire VDD,
-`endif
-	input clk_i,
-	input rst_override_n,
-	
+`endif	
 	input [20:0] io_in_buffered,
 	output [41:0] io_out,
 	output io_oe

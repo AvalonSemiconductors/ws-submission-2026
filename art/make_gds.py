@@ -98,7 +98,7 @@ def convert_to_gds(
     found = 1
     # Iterate until all issues have been fixed
     # On a finitely-sized grid, this should always converge
-    while(found != 0 and do_fixing):
+    while(found != 0):
         found = 0
         for y in range(new_image_binary.height):
             for x in range(new_image_binary.width):

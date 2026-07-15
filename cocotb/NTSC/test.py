@@ -9,7 +9,7 @@ async def test_ntsc(dut):
 	dut._log.info("start")
 	dut.RESETn.value = 0
 	dut.color_enable.value = 1
-	dut.pattern_sel.value = 7
+	dut.pattern_sel.value = 12
 	c = Clock(dut.clk, 69842, "ps")
 	cocotb.start_soon(c.start())
 	await ClockCycles(dut.clk, 3)

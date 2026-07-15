@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1782948144" />
-    <testcase name="test_ntsc" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/NTSC/test.py" lineno="7" time="78.13096141815186" sim_time_ns="15847918.062" ratio_time="202837.87341593005" />
+    <property name="random_seed" value="1784075228" />
+    <testcase name="test_ntsc" classname="test" file="/home/tholin/Desktop/PROJECTS/gf180mcu-project-template/cocotb/NTSC/test.py" lineno="7" time="1393.1572897434235" sim_time_ns="15847918.062" ratio_time="11375.541138587947" />
   </testsuite>
 </testsuites>
