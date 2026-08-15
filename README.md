@@ -10,3 +10,5 @@ Contains:
 - FM Synth
 - Digital-to-Analog converters
 - Two layouts generated using [FeatherLane](https://codeberg.org/TholinVali/FeatherLane)
+
+[Full documentation](https://avalonsemiconductors.github.io/WS2026/index.html)
